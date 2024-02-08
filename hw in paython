@@ -1,0 +1,115 @@
+# Implement funny reverse, skipping serious words (words with !).
+
+def funny2(sentence):
+    words = sentence.split()
+    funny_words = [word for word in words if "!" not in word]
+    serious_words = [word for word in words if "!" in word]
+    funny_reversed = " ".join(funny_words[::-1])
+    return funny_reversed + " " + " ".join(serious_words)
+    pass
+    # =======================
+
+
+result = funny2("Foo bar! I said bar!")
+print(result)
+assert result == "Oof I Dias"
+
+result = funny2("The qu!ck brown fox")
+print(result)
+assert result == "Eht Nworb Xof"
+
+print("OK")
+
+
+# Using list comprehension, create a function that returns an html unordered list:
+
+def ul(items):
+    assert False, "Fix me!"
+
+
+assert "<ul><li>One</li><li>Two</li><li>Three</li></ul>" == ul(['One', 'Two', 'Three'])
+
+
+# dictionary_exercise.py
+
+def word_length_dict(s):
+    """
+    Create a dictionary where keys are words in the input string,
+    and values are the lengths of those words.
+
+    Args:
+    - s (str): Input string
+
+    Returns:
+    - dict: Dictionary with word lengths
+    """
+    words = s.split()
+    word_lengths_dict = {word: len(word) for word in words}
+    return word_lengths_dict
+
+
+# Test cases
+result = word_length_dict("Python is a powerful language")
+print(result)
+assert result == {'Python': 6, 'is': 2, 'a': 1, 'powerful': 9, 'language': 8}
+
+result = word_length_dict("Hello world! This is a test.")
+print(result)
+assert result == {'Hello': 5, 'world!': 6, 'This': 4, 'is': 2, 'a': 1, 'test.': 5}
+
+result = word_length_dict("List comprehension is concise and powerful.")
+print(result)
+assert result == {'List': 4, 'comprehension': 13, 'is': 2, 'concise': 7, 'and': 3, 'powerful.': 9}
+
+
+# complex_dict_exercise.py
+
+def word_stats(s):
+    """
+    Create a dictionary with word statistics from the input string:
+    - Keys: words from the string
+    - Values: sub-dictionaries with the following information:
+        - 'length': length of the word
+        - 'is_vowel_start': True if the word starts with a vowel, False otherwise
+        - 'contains_digit': True if the word contains a digit, False otherwise
+
+    Args:
+    - s (str): Input string
+
+    Returns:
+    - dict: Dictionary with word statistics
+    """
+   words = s.split()
+    word_stats = {}
+    for word in words:
+        stats = {
+            'length': len(word),
+            'is_vowel_start': word[0].lower() in 'aeiou',
+            'contains_digit': any(char.isdigit() for char in word)
+        }
+        word_stats[word] = stats
+    return word_stats
+
+
+
+# Test cases
+result = word_stats("Hello world! Python3 is awesome.")
+print(result)
+assert result == {
+    'Hello': {'length': 5, 'is_vowel_start': True, 'contains_digit': False},
+    'world!': {'length': 6, 'is_vowel_start': False, 'contains_digit': False},
+    'Python3': {'length': 7, 'is_vowel_start': True, 'contains_digit': True},
+    'is': {'length': 2, 'is_vowel_start': True, 'contains_digit': False},
+    'awesome.': {'length': 8, 'is_vowel_start': False, 'contains_digit': False}
+}
+
+result = word_stats("Complex 123 exercise with multiple words!")
+print(result)
+assert result == {
+    'Complex': {'length': 7, 'is_vowel_start': False, 'contains_digit': False},
+    '123': {'length': 3, 'is_vowel_start': False, 'contains_digit': True},
+    'exercise': {'length': 8, 'is_vowel_start': False, 'contains_digit': False},
+    'with': {'length': 4, 'is_vowel_start': True, 'contains_digit': False},
+    'multiple': {'length': 8, 'is_vowel_start': True, 'contains_digit': False},
+    'words!': {'length': 6, 'is_vowel_start': False, 'contains_digit': False}
+}
